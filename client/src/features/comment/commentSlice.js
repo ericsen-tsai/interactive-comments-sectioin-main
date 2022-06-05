@@ -28,6 +28,14 @@ export const commentSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(deleteComment.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.comments = _.omit(state, action.payload.id)
+      })
+      .addCase(fetchComments.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.comments = _.keyBy(action.payload, "id")
+      })
       .addMatcher(
         isAnyOf(
           fetchComment.pending,
@@ -43,30 +51,22 @@ export const commentSlice = createSlice({
           state.isLoading = true
         }
       )
-      .addMatcher(fetchComments.fullfilled, (state, action) => {
-        state.isLoading = false
-        state.comments = _.keyBy(action.payload, "id")
-      })
       .addMatcher(
-        // When deleting reply is fullfilled there will be action.payload.
+        // When deleting reply is fulfilled there will be action.payload.
         // Because I use put method instead of delete.
         isAnyOf(
-          fetchComment.fullfilled,
-          createComment.fullfilled,
-          createReply.fullfilled,
-          editComment.fullfilled,
-          editReply.fullfilled,
-          deleteReply.fullfilled
+          fetchComment.fulfilled,
+          createComment.fulfilled,
+          createReply.fulfilled,
+          editComment.fulfilled,
+          editReply.fulfilled,
+          deleteReply.fulfilled
         ),
         (state, action) => {
           state.isLoading = false
           state.comments = { ...state, [action.payload.id]: action.payload }
         }
       )
-      .addMatcher(deleteComment.fullfilled, (state, action) => {
-        state.isLoading = false
-        state.comments = _.omit(state, action.payload.id)
-      })
       .addMatcher(
         isAnyOf(
           fetchComment.rejected,
@@ -88,9 +88,9 @@ export const commentSlice = createSlice({
   },
 })
 
-export const { clearCommentError } = authSlice.actions
+export const { clearCommentError } = commentSlice.actions
 
-export const selectComments = (state) => state.auth.comments
-export const selectCommentError = (state) => state.auth.error
+export const selectComments = (state) => state.comment.comments
+export const selectCommentError = (state) => state.comment.error
 
-export default authSlice.reducer
+export default commentSlice.reducer

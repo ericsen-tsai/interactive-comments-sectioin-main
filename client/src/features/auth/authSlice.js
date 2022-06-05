@@ -19,15 +19,15 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(fetchCurrentUser.pending, (state) => {
+      .addCase(fetchCurrentUser.pending, (state) => {
         state.isLoading = true
       })
-      .addMatcher(fetchCurrentUser.fulfilled, (state, action) => {
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.isLoading = false
         state.user = action.payload
         state.isAuthenticated = true
       })
-      .addMatcher(fetchCurrentUser.rejected, (state) => {
+      .addCase(fetchCurrentUser.rejected, (state) => {
         state.isLoading = false
         state.isAuthenticated = false
         state.user = {}
