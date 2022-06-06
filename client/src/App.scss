@@ -1,0 +1,10 @@
+@import "../sass/variables";
+.App {
+  height: 100%;
+  width: 100%;
+  background-color: $clr-neutral-3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

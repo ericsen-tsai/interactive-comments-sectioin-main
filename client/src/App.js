@@ -1,12 +1,24 @@
-import React from "react"
-import { Provider } from "react-redux"
-import { store } from "./app/store"
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
+
+import UserCard from "./features/auth/UserCard"
+import { fetchCurrentUser } from "./features/auth/authService"
+import { fetchComments } from "./features/comment/commentService"
+
+import "./App.scss"
 
 const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchComments())
+    dispatch(fetchCurrentUser())
+  }, [])
+
   return (
-    <Provider store={store}>
-      <div>App</div>
-    </Provider>
+    <div className="App">
+      <UserCard />
+    </div>
   )
 }
 

@@ -1,0 +1,47 @@
+@import "../../../sass/variables";
+
+.usercard {
+  text-align: center;
+  width: 60rem;
+  height: 10rem;
+  background-color: $clr-neutral-4;
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    height: 100%;
+  }
+
+  &__avatar-box {
+    height: 100%;
+  }
+
+  &__avatar {
+    width: 5rem;
+    height: auto;
+  }
+
+  &__comment {
+    display: inline-block;
+    height: 80%;
+    width: 60%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    font-family: "Rubik", sans-serif;
+  }
+
+  &__submit {
+    border-radius: 1rem;
+    background-color: $clr-primary-1;
+    color: $clr-neutral-3;
+    padding: 1.5rem 2.5rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+}
