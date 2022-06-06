@@ -64,7 +64,10 @@ export const commentSlice = createSlice({
         ),
         (state, action) => {
           state.isLoading = false
-          state.comments = { ...state, [action.payload.id]: action.payload }
+          state.comments = {
+            ...state.comments,
+            [action.payload.id]: action.payload,
+          }
         }
       )
       .addMatcher(

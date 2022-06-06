@@ -24,7 +24,7 @@ export const fetchComments = createAsyncThunk(
 export const createComment = createAsyncThunk(
   "auth/createComment",
   async (data) => {
-    const response = await API.post("comments", headers, data)
+    const response = await API.post("comments", data, { headers })
     return response.data
   }
 )
@@ -34,7 +34,7 @@ export const createComment = createAsyncThunk(
 export const createReply = createAsyncThunk(
   "auth/createReply",
   async (data) => {
-    const response = await API.put(`comments/${data.id}`, headers, data)
+    const response = await API.put(`comments/${data.id}`, data, { headers })
     return response.data
   }
 )
@@ -42,13 +42,13 @@ export const createReply = createAsyncThunk(
 export const editComment = createAsyncThunk(
   "auth/editComment",
   async (data) => {
-    const response = await API.put(`comments/${data.id}`, headers, data)
+    const response = await API.put(`comments/${data.id}`, data, { headers })
     return response.data
   }
 )
 
 export const editReply = createAsyncThunk("auth/editReply", async (data) => {
-  const response = await API.put(`comments/${data.id}`, headers, data)
+  const response = await API.put(`comments/${data.id}`, data, { headers })
   return response.data
 })
 
@@ -62,7 +62,7 @@ export const deleteComment = createAsyncThunk(
 export const deleteReply = createAsyncThunk(
   "auth/deleteReply",
   async (data) => {
-    const response = await API.put(`comments/${data.id}`, headers, data)
+    const response = await API.put(`comments/${data.id}`, data, { headers })
     return response.data
   }
 )

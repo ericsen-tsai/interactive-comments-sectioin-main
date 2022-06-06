@@ -1,16 +1,29 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
 import { selectUser } from "./authSlice"
+import { createComment } from "../comment/commentService"
 import "./UserCard.scss"
 
 const UserCard = () => {
-  const [commentText, setCommentText] = useState("")
+  const [commentContent, setCommentContent] = useState("")
   const user = useSelector(selectUser)
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(commentText)
+
+    const commentToAdd = {
+      content: commentContent,
+      createdAt: new Date().toISOString(),
+      score: 0,
+      user,
+      replies: [],
+    }
+
+    dispatch(createComment(commentToAdd))
+    setCommentContent("")
   }
 
   if (!Object.keys(user).length) return <div>No User!!</div>
@@ -28,8 +41,8 @@ const UserCard = () => {
         <textarea
           type="text"
           className="usercard__comment"
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
+          value={commentContent}
+          onChange={(e) => setCommentContent(e.target.value)}
           placeholder="Add a comment..."
         />
         <button className="usercard__submit">SEND</button>

@@ -63,6 +63,20 @@
           }
         }
       ]
+    },
+    {
+      "content": "Add A new Vibe for testing!!",
+      "createdAt": "2022-06-06T16:23:02.391Z",
+      "score": 0,
+      "user": {
+        "image": {
+          "png": "./images/avatars/image-juliusomo.png",
+          "webp": "./images/avatars/image-juliusomo.webp"
+        },
+        "username": "juliusomo"
+      },
+      "replies": [],
+      "id": 3
     }
   ]
 }
