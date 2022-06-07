@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
 import { selectUser } from "./authSlice"
 import { createComment } from "../comment/commentService"

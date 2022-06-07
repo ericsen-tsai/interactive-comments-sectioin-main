@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
 
+import CommentList from "./features/comment/CommentList"
 import UserCard from "./features/auth/UserCard"
 import { fetchCurrentUser } from "./features/auth/authService"
 import { fetchComments } from "./features/comment/commentService"
@@ -17,6 +18,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <CommentList />
       <UserCard />
     </div>
   )

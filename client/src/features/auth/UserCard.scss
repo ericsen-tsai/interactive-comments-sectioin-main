@@ -3,9 +3,9 @@
 .usercard {
   text-align: center;
   width: 60rem;
-  height: 10rem;
-  background-color: $clr-neutral-4;
-  padding: 2rem 1rem;
+  height: 8rem;
+  background-color: $clr-neutral-5;
+  padding: 2rem;
   border-radius: 1rem;
 
   &__form {
@@ -21,15 +21,16 @@
   }
 
   &__avatar {
-    width: 5rem;
+    width: 4rem;
     height: auto;
   }
 
   &__comment {
     display: inline-block;
-    height: 80%;
-    width: 60%;
-    border: none;
+    box-sizing: border-box;
+    height: 100%;
+    width: 80%;
+    border: 0.1rem solid $clr-neutral-1;
     border-radius: 1rem;
     padding: 1rem 2rem;
     font-family: "Rubik", sans-serif;
@@ -39,9 +40,11 @@
     border-radius: 1rem;
     background-color: $clr-primary-1;
     color: $clr-neutral-3;
-    padding: 1.5rem 2.5rem;
+    padding: 1.2rem 2.5rem;
     outline: none;
     border: none;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
     cursor: pointer;
   }
 }

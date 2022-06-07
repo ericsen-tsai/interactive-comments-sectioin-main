@@ -1,0 +1,37 @@
+.icon {
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+
+  &--plus {
+    background-image: url(../public/images/icon-plus.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  &--minus {
+    background-image: url(../public/images/icon-minus.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  &--edit {
+    background-image: url(../public/images/icon-edit.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &--delete {
+    background-image: url(../public/images/icon-delete.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &--reply {
+    background-image: url(../public/images/icon-reply.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
