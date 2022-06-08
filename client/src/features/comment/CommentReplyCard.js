@@ -2,18 +2,18 @@ import React, { useState } from "react"
 import Card from "../../components/Card"
 import UserCard from "./UserCard"
 
-const CommentCard = ({ comment, currentUserName }) => {
+const CommentReplyCard = ({ reply, currentUserName }) => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
       <Card
-        info={comment}
+        info={reply}
         currentUserName={currentUserName}
         setIsOpen={setIsOpen}
       />
-      {isOpen && <UserCard />}
+      {isOpen && <UserCard replying={true} />}
     </>
   )
 }
 
-export default CommentCard
+export default CommentReplyCard

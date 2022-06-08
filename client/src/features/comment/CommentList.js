@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { selectComments } from "./commentSlice"
 import { selectUser } from "../auth/authSlice"
 import CommentCard from "./CommentCard"
-import ReplyCard from "./ReplyCard"
+import CommentReplyList from "./CommentReplyList"
 
 const CommentList = () => {
   const comments = useSelector(selectComments)
@@ -12,27 +12,16 @@ const CommentList = () => {
   return (
     <>
       {Object.keys(comments).map((id) => (
-        <>
-          <div className="commentcard">
-            <CommentCard
-              comment={comments[id]}
+        <React.Fragment key={id}>
+          <CommentCard comment={comments[id]} currentUserName={user.username} />
+
+          {comments[id].replies.length > 0 && (
+            <CommentReplyList
+              replies={comments[id].replies}
               currentUserName={user.username}
-              key={id}
             />
-
-            {/* TODO commentcard reply */}
-          </div>
-
-          {comments[id].replies.map((reply) => (
-            <div className="replycard">
-              <ReplyCard
-                reply={reply}
-                key={`${reply.createdAt}-${reply.user.username}`}
-              />
-              {/* TODO replycard reply */}
-            </div>
-          ))}
-        </>
+          )}
+        </React.Fragment>
       ))}
     </>
   )

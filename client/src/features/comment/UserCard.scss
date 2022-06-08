@@ -2,11 +2,11 @@
 
 .usercard {
   text-align: center;
-  width: 60rem;
-  height: 8rem;
+  width: $card-width;
+  height: $reply-card-height;
   background-color: $clr-neutral-5;
-  padding: 2rem;
-  border-radius: 1rem;
+  padding: $card-padding;
+  border-radius: $card-border-radius;
 
   &__form {
     display: flex;
@@ -46,5 +46,10 @@
     font-family: "Rubik", sans-serif;
     font-weight: 500;
     cursor: pointer;
+  }
+
+  &--replying {
+    width: 50rem;
+    margin-left: 5rem;
   }
 }

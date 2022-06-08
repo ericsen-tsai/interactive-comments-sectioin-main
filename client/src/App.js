@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
 
 import CommentList from "./features/comment/CommentList"
-import UserCard from "./features/auth/UserCard"
+import UserCard from "./features/comment/UserCard"
 import { fetchCurrentUser } from "./features/auth/authService"
 import { fetchComments } from "./features/comment/commentService"
 

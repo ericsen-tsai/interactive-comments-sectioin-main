@@ -91,6 +91,20 @@
       },
       "replies": [],
       "id": 4
+    },
+    {
+      "content": "Testing Testing and more Testing!!!!!",
+      "createdAt": "2022-06-08T13:51:04.039Z",
+      "score": 0,
+      "user": {
+        "image": {
+          "png": "./images/avatars/image-juliusomo.png",
+          "webp": "./images/avatars/image-juliusomo.webp"
+        },
+        "username": "juliusomo"
+      },
+      "replies": [],
+      "id": 5
     }
   ]
 }

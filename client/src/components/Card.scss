@@ -1,16 +1,16 @@
-@import "../../../sass/variables";
+@import "../../sass/variables";
 
-.commentcard {
-  width: 60rem;
+.card {
+  width: $card-width;
+  border-radius: $card-border-radius;
+  padding: $card-padding;
   background-color: $clr-neutral-5;
-  border-radius: 1rem;
-  padding: 2rem;
 
   &__comment {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 10rem;
+    height: $comment-card-height;
   }
 
   &__score-box {
@@ -103,8 +103,30 @@
     height: 70%;
   }
 
+  &__replying-to {
+    color: $clr-primary-1;
+    font-weight: $font-weight-bold;
+  }
+
   &__content {
     font-size: 1.4rem;
     color: $clr-neutral-2;
+  }
+
+  &--reply-list {
+    padding: 0;
+    width: 55rem;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    border-radius: 0;
+    border-left: 0.1rem rgba($clr-neutral-2, 0.2) solid;
+  }
+
+  &--reply {
+    width: 50rem;
+    margin-left: 5rem;
+    padding: 2rem;
   }
 }
