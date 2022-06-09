@@ -1,7 +1,7 @@
 import React from "react"
 import CommentReplyCard from "./CommentReplyCard"
 
-const CommentReplyList = ({ replies, currentUserName }) => {
+const CommentReplyList = ({ replies, currentUserName, commentId }) => {
   return (
     <div className="card card--reply-list">
       {replies.map((reply) => (
@@ -9,6 +9,7 @@ const CommentReplyList = ({ replies, currentUserName }) => {
           reply={reply}
           currentUserName={currentUserName}
           key={`${reply.createdAt}-${reply.user.username}`}
+          commentId={commentId}
         />
       ))}
     </div>

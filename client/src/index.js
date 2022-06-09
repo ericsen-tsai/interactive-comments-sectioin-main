@@ -8,9 +8,9 @@ import "./index.scss"
 
 const root = ReactDom.createRoot(document.querySelector("#root"))
 root.render(
-  <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </StrictMode>
+  // <StrictMode>
+  <Provider store={store}>
+    <App />
+  </Provider>
+  // </StrictMode>
 )

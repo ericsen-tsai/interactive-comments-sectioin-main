@@ -1,0 +1,70 @@
+@import "../../sass/variables";
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $clr-neutral-3;
+  width: 28rem;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+
+  &__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba($clr-neutral-1, 0.3);
+    height: 100%;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: $font-weight-regular;
+    display: inline-block;
+    margin: 0;
+  }
+
+  &__description {
+    font-size: 1.4rem;
+    color: $clr-neutral-2;
+    margin: 2rem 0;
+  }
+
+  &__action {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    width: 13rem;
+    padding: 1rem;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: $clr-neutral-3;
+    font-family: "Rubik", sans-serif;
+    cursor: pointer;
+
+    &--cancel {
+      background-color: $clr-neutral-2;
+
+      &:hover {
+        background-color: rgba($clr-neutral-2, 0.7);
+      }
+    }
+
+    &--delete {
+      background-color: $clr-primary-2;
+      &:hover {
+        background-color: rgba($clr-primary-2, 0.7);
+      }
+    }
+
+    &:hover {
+      color: rgba($clr-neutral-3, 0.7);
+    }
+  }
+}

@@ -1,18 +1,60 @@
 import React from "react"
+import { useSelector, useDispatch } from "react-redux"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
+
+import {
+  togglePopup,
+  chooseIntendedDelete,
+  selectComments,
+} from "../features/comment/commentSlice"
+import { editComment, editReply } from "../features/comment/commentService"
+
 import "./Card.scss"
 
-const Card = ({ info, currentUserName, setIsOpen }) => {
-  const { content, createdAt, score, user, replyingTo } = info
+const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
+  const dispatch = useDispatch()
+  const comments = useSelector(selectComments)
+  const { content, createdAt, score, user, replyingTo, id } = info
+
   const isSelf = currentUserName === user.username
+
+  const handleOnDelete = () => {
+    dispatch(togglePopup())
+    dispatch(
+      chooseIntendedDelete({
+        commentId: Number(commentId),
+        replyId: replyingTo ? id : -1,
+      })
+    )
+  }
+
+  const handleScore = (num) => {
+    let comment = { ...comments[commentId] }
+    if (replyingTo) {
+      dispatch(
+        editReply({
+          ...comment,
+          replies: comment.replies.map((reply) => {
+            if (reply.id === id) {
+              return { ...reply, score: reply.score + num }
+            }
+            return reply
+          }),
+        })
+      )
+      return
+    }
+
+    dispatch(editComment({ ...comment, score: (comment.score += num) }))
+  }
 
   return (
     <div className={`card ${replyingTo && "card--reply"}`}>
       <div className="card__comment">
         <div className="card__score-box">
-          <i className="icon icon--plus"></i>
+          <i className="icon icon--plus" onClick={() => handleScore(1)}></i>
           <p className="card__score">{score}</p>
-          <i className="icon icon--minus"></i>
+          <i className="icon icon--minus" onClick={() => handleScore(-1)}></i>
         </div>
         <div className="card__main">
           <div className="card__main-top">
@@ -33,15 +75,21 @@ const Card = ({ info, currentUserName, setIsOpen }) => {
             <div className="card__action-box">
               {isSelf ? (
                 <>
-                  <div className="card__action">
+                  <div
+                    className="card__action"
+                    onClick={() => handleOnDelete()}
+                  >
                     <i className="icon icon--delete"></i>
                     <p className="card__action-text card__action-text--delete">
                       Delete
                     </p>
+                    <div className="card__action-mask"></div>
                   </div>
                   <div className="card__action">
+                    {/* TODO Edit comment or reply */}
                     <i className="icon icon--edit"></i>
                     <p className="card__action-text">Edit</p>
+                    <div className="card__action-mask"></div>
                   </div>
                 </>
               ) : (
@@ -52,6 +100,7 @@ const Card = ({ info, currentUserName, setIsOpen }) => {
                   >
                     <i className="icon icon--reply"></i>
                     <p className="card__action-text">Reply</p>
+                    <div className="card__action-mask"></div>
                   </div>
                 </>
               )}

@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import Card from "../../components/Card"
 import UserCard from "./UserCard"
+import { createReply } from "./commentService"
 
-const CommentReplyCard = ({ reply, currentUserName }) => {
+const CommentReplyCard = ({ reply, currentUserName, commentId }) => {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
@@ -10,8 +11,17 @@ const CommentReplyCard = ({ reply, currentUserName }) => {
         info={reply}
         currentUserName={currentUserName}
         setIsOpen={setIsOpen}
+        commentId={commentId}
       />
-      {isOpen && <UserCard replying={true} />}
+      {isOpen && (
+        <UserCard
+          replyingType="reply"
+          replyingTo={reply.user.username}
+          handleCreate={createReply}
+          commentId={commentId}
+          setIsOpen={setIsOpen}
+        />
+      )}
     </>
   )
 }

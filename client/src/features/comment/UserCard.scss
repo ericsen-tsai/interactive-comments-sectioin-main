@@ -46,6 +46,11 @@
     font-family: "Rubik", sans-serif;
     font-weight: 500;
     cursor: pointer;
+
+    &:hover {
+      background-color: rgba($clr-primary-1, 0.8);
+      color: rgba($clr-neutral-3, 0.8);
+    }
   }
 
   &--replying {

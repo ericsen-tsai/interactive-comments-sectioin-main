@@ -1,15 +1,19 @@
 import React, { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+
+import { fetchCurrentUser } from "./features/auth/authService"
+import { fetchComments, createComment } from "./features/comment/commentService"
+import { selectIsOpenPopup } from "./features/comment/commentSlice"
 
 import CommentList from "./features/comment/CommentList"
 import UserCard from "./features/comment/UserCard"
-import { fetchCurrentUser } from "./features/auth/authService"
-import { fetchComments } from "./features/comment/commentService"
+import Popup from "./components/Popup"
 
 import "./App.scss"
 
 const App = () => {
   const dispatch = useDispatch()
+  const isOpenPopup = useSelector(selectIsOpenPopup)
 
   useEffect(() => {
     dispatch(fetchComments())
@@ -19,7 +23,8 @@ const App = () => {
   return (
     <div className="App">
       <CommentList />
-      <UserCard />
+      <UserCard handleCreate={createComment} />
+      {isOpenPopup && <Popup />}
     </div>
   )
 }

@@ -19,7 +19,22 @@
         },
         "username": "amyrobson"
       },
-      "replies": []
+      "replies": [
+        {
+          "id": 687561,
+          "content": "What's up bro",
+          "createdAt": "2022-06-09T09:17:25.612Z",
+          "score": 2,
+          "user": {
+            "image": {
+              "png": "./images/avatars/image-juliusomo.png",
+              "webp": "./images/avatars/image-juliusomo.webp"
+            },
+            "username": "juliusomo"
+          },
+          "replyingTo": "amyrobson"
+        }
+      ]
     },
     {
       "id": 2,
@@ -47,64 +62,8 @@
             },
             "username": "ramsesmiron"
           }
-        },
-        {
-          "id": 4,
-          "content": "I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.",
-          "createdAt": "2022-06-03T16:00:00.000Z",
-          "score": 2,
-          "replyingTo": "ramsesmiron",
-          "user": {
-            "image": {
-              "png": "./images/avatars/image-juliusomo.png",
-              "webp": "./images/avatars/image-juliusomo.webp"
-            },
-            "username": "juliusomo"
-          }
         }
       ]
-    },
-    {
-      "content": "Add A new Vibe for testing!!",
-      "createdAt": "2022-06-06T16:23:02.391Z",
-      "score": 0,
-      "user": {
-        "image": {
-          "png": "./images/avatars/image-juliusomo.png",
-          "webp": "./images/avatars/image-juliusomo.webp"
-        },
-        "username": "juliusomo"
-      },
-      "replies": [],
-      "id": 3
-    },
-    {
-      "content": "New Testing~~",
-      "createdAt": "2022-06-07T09:33:35.188Z",
-      "score": 0,
-      "user": {
-        "image": {
-          "png": "./images/avatars/image-juliusomo.png",
-          "webp": "./images/avatars/image-juliusomo.webp"
-        },
-        "username": "juliusomo"
-      },
-      "replies": [],
-      "id": 4
-    },
-    {
-      "content": "Testing Testing and more Testing!!!!!",
-      "createdAt": "2022-06-08T13:51:04.039Z",
-      "score": 0,
-      "user": {
-        "image": {
-          "png": "./images/avatars/image-juliusomo.png",
-          "webp": "./images/avatars/image-juliusomo.webp"
-        },
-        "username": "juliusomo"
-      },
-      "replies": [],
-      "id": 5
     }
   ]
 }

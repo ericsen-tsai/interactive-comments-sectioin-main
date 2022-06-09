@@ -15,6 +15,13 @@ const initialState = {
   comments: {},
   isLoading: false,
   error: { isError: false, errMsg: "" },
+  delete: {
+    isOpenPopup: false,
+    intendedDelete: {
+      commentId: -1,
+      replyId: -1,
+    },
+  },
 }
 
 export const commentSlice = createSlice({
@@ -25,12 +32,28 @@ export const commentSlice = createSlice({
       state.error.isError = false
       state.error.errMsg = ""
     },
+    togglePopup: (state) => {
+      state.delete.isOpenPopup = !state.delete.isOpenPopup
+    },
+    clearIntendedDelete: (state) => {
+      state.delete.intendedDelete = {
+        commentId: -1,
+        replyId: -1,
+      }
+    },
+    chooseIntendedDelete: (state, action) => {
+      state.delete.intendedDelete = {
+        commentId: action.payload.commentId,
+        replyId: action.payload.replyId,
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(deleteComment.fulfilled, (state, action) => {
         state.isLoading = false
-        state.comments = _.omit(state, action.payload.id)
+        console.log(action)
+        state.comments = _.omit(state.comments, action.payload.id)
       })
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.isLoading = false
@@ -91,9 +114,17 @@ export const commentSlice = createSlice({
   },
 })
 
-export const { clearCommentError } = commentSlice.actions
+export const {
+  clearCommentError,
+  togglePopup,
+  chooseIntendedDelete,
+  clearIntendedDelete,
+} = commentSlice.actions
 
 export const selectComments = (state) => state.comment.comments
+export const selectIntendedDelete = (state) =>
+  state.comment.delete.intendedDelete
+export const selectIsOpenPopup = (state) => state.comment.delete.isOpenPopup
 export const selectCommentError = (state) => state.comment.error
 
 export default commentSlice.reducer

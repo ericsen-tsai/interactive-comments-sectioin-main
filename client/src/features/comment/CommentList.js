@@ -19,6 +19,7 @@ const CommentList = () => {
             <CommentReplyList
               replies={comments[id].replies}
               currentUserName={user.username}
+              commentId={id}
             />
           )}
         </React.Fragment>

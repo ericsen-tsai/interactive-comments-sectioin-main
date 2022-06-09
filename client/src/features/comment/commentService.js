@@ -56,6 +56,7 @@ export const deleteComment = createAsyncThunk(
   "auth/deleteComment",
   async (data) => {
     await API.delete(`comments/${data.id}`, headers)
+    return { id: data.id }
   }
 )
 

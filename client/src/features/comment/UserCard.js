@@ -2,33 +2,65 @@ import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 
 import { selectUser } from "../auth/authSlice"
-import { createComment } from "./commentService"
+import { selectComments } from "./commentSlice"
 import "./UserCard.scss"
 
-const UserCard = ({ replying }) => {
-  const [commentContent, setCommentContent] = useState("")
+const UserCard = ({
+  replyingType,
+  replyingTo,
+  commentId,
+  handleCreate,
+  setIsOpen,
+}) => {
+  const [messageContent, setMessageContent] = useState(
+    replyingTo ? `@${replyingTo}, ` : ""
+  )
+
   const user = useSelector(selectUser)
+  const comments = useSelector(selectComments)
   const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // const commentToAdd = {
-    //   content: commentContent,
-    //   createdAt: new Date().toISOString(),
-    //   score: 0,
-    //   user,
-    //   replies: [],
-    // }
-    // TODO dispatch with different logic based on different card types
-    // dispatch(createComment(commentToAdd))
-    setCommentContent("")
+    let messageToAdd
+    if (commentId) {
+      const replyToAdd = {
+        id: Math.floor(Math.random() * 1000000),
+        content: messageContent.split(`${replyingTo}, `)[1],
+        createdAt: new Date().toISOString(),
+        score: 0,
+        user,
+        replyingTo,
+      }
+      messageToAdd = { ...comments[commentId] }
+      messageToAdd.replies = [...messageToAdd.replies, replyToAdd]
+    }
+
+    if (!commentId) {
+      messageToAdd = {
+        content: messageContent,
+        createdAt: new Date().toISOString(),
+        score: 0,
+        user,
+        replies: [],
+      }
+    }
+
+    dispatch(handleCreate(messageToAdd))
+
+    setMessageContent(replyingTo ? `@${replyingTo}, ` : "")
+    if (setIsOpen) setIsOpen(false)
   }
 
   if (!Object.keys(user).length) return <div>No User!!</div>
 
   return (
-    <div className={`usercard ${replying ? "usercard--replying" : ""}`}>
+    <div
+      className={`usercard ${
+        replyingType === "reply" ? "usercard--replying" : ""
+      }`}
+    >
       <form className="usercard__form" onSubmit={(e) => handleSubmit(e)}>
         <div className="usercard__avatar-box">
           <img
@@ -40,11 +72,13 @@ const UserCard = ({ replying }) => {
         <textarea
           type="text"
           className="usercard__comment"
-          value={commentContent}
-          onChange={(e) => setCommentContent(e.target.value)}
+          value={messageContent}
+          onChange={(e) => setMessageContent(e.target.value)}
           placeholder="Add a comment..."
-        />
-        <button className="usercard__submit">SEND</button>
+        ></textarea>
+        <button className="usercard__submit">
+          {replyingType ? "REPLY" : "SEND"}
+        </button>
       </form>
     </div>
   )
