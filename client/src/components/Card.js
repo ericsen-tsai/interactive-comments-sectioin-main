@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 
@@ -12,6 +12,7 @@ import { editComment, editReply } from "../features/comment/commentService"
 import "./Card.scss"
 
 const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
+  const [isEdit, setIsEdit] = useState(false)
   const dispatch = useDispatch()
   const comments = useSelector(selectComments)
   const { content, createdAt, score, user, replyingTo, id } = info
@@ -49,7 +50,10 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
   }
 
   return (
-    <div className={`card ${replyingTo && "card--reply"}`}>
+    <div
+      className={`card ${replyingTo ? "card--reply" : ""}`}
+      style={isEdit ? { paddingBottom: "10rem" } : {}}
+    >
       <div className="card__comment">
         <div className="card__score-box">
           <i className="icon icon--plus" onClick={() => handleScore(1)}></i>
@@ -85,8 +89,10 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
                     </p>
                     <div className="card__action-mask"></div>
                   </div>
-                  <div className="card__action">
-                    {/* TODO Edit comment or reply */}
+                  <div
+                    className="card__action"
+                    onClick={() => setIsEdit((isEdit) => !isEdit)}
+                  >
                     <i className="icon icon--edit"></i>
                     <p className="card__action-text">Edit</p>
                     <div className="card__action-mask"></div>
@@ -107,12 +113,23 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
             </div>
           </div>
           <div className="card__main-bottom">
-            <p className="card__content">
-              {replyingTo && (
-                <span className="card__replying-to">@{replyingTo}</span>
-              )}
-              &nbsp;{content}
-            </p>
+            {isEdit ? (
+              <>
+                <textarea
+                  className="card__edit"
+                  value={`@${replyingTo}, ${content}`}
+                ></textarea>
+                {/*TODO handleUpdate function for edit comment or reply*/}
+                <button className="card__button">UPDATE</button>
+              </>
+            ) : (
+              <p className="card__content">
+                {replyingTo && (
+                  <span className="card__replying-to">@{replyingTo}</span>
+                )}
+                &nbsp;{content}
+              </p>
+            )}
           </div>
         </div>
       </div>
