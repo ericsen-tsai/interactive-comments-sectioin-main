@@ -19,22 +19,7 @@
         },
         "username": "amyrobson"
       },
-      "replies": [
-        {
-          "id": 770580,
-          "content": "Are you OK???",
-          "createdAt": "2022-06-10T05:24:33.837Z",
-          "score": 0,
-          "user": {
-            "image": {
-              "png": "./images/avatars/image-juliusomo.png",
-              "webp": "./images/avatars/image-juliusomo.webp"
-            },
-            "username": "juliusomo"
-          },
-          "replyingTo": "amyrobson"
-        }
-      ]
+      "replies": []
     },
     {
       "id": 2,
@@ -62,6 +47,20 @@
             },
             "username": "ramsesmiron"
           }
+        },
+        {
+          "id": 219574,
+          "content": "Hey you need some refreshing!!!!",
+          "createdAt": "2022-06-09T13:46:52.527Z",
+          "score": 3,
+          "user": {
+            "image": {
+              "png": "./images/avatars/image-juliusomo.png",
+              "webp": "./images/avatars/image-juliusomo.webp"
+            },
+            "username": "juliusomo"
+          },
+          "replyingTo": "ramsesmiron"
         }
       ]
     }
