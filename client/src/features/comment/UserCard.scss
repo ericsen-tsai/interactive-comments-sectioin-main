@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 3rem;
+    gap: 1rem;
     height: 100%;
   }
 
@@ -26,6 +26,7 @@
   }
 
   &__comment {
+    margin-left: 1rem;
     display: inline-block;
     box-sizing: border-box;
     height: 100%;
@@ -34,23 +35,6 @@
     border-radius: 1rem;
     padding: 1rem 2rem;
     font-family: "Rubik", sans-serif;
-  }
-
-  &__submit {
-    border-radius: 1rem;
-    background-color: $clr-primary-1;
-    color: $clr-neutral-3;
-    padding: 1.2rem 2.5rem;
-    outline: none;
-    border: none;
-    font-family: "Rubik", sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-
-    &:hover {
-      background-color: rgba($clr-primary-1, 0.8);
-      color: rgba($clr-neutral-3, 0.8);
-    }
   }
 
   &--replying {

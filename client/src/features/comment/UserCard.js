@@ -76,9 +76,7 @@ const UserCard = ({
           onChange={(e) => setMessageContent(e.target.value)}
           placeholder="Add a comment..."
         ></textarea>
-        <button className="usercard__submit">
-          {replyingType ? "REPLY" : "SEND"}
-        </button>
+        <button className="button">{replyingType ? "REPLY" : "SEND"}</button>
       </form>
     </div>
   )

@@ -46,13 +46,13 @@ const Popup = () => {
         </p>
         <div className="popup__action">
           <button
-            className="popup__button popup__button--cancel"
+            className="button button--cancel"
             onClick={() => handleOnCancel()}
           >
             NO, CANCEL
           </button>
           <button
-            className="popup__button popup__button--delete"
+            className="button button--delete"
             onClick={() => handleOnDelete()}
           >
             YES, DELETE

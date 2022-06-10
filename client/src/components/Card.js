@@ -12,10 +12,14 @@ import { editComment, editReply } from "../features/comment/commentService"
 import "./Card.scss"
 
 const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
+  const { content, createdAt, score, user, replyingTo, id } = info
   const [isEdit, setIsEdit] = useState(false)
+  const [messageContent, setMessageContent] = useState(
+    replyingTo ? `@${replyingTo}, ${content}` : content
+  )
+
   const dispatch = useDispatch()
   const comments = useSelector(selectComments)
-  const { content, createdAt, score, user, replyingTo, id } = info
 
   const isSelf = currentUserName === user.username
 
@@ -30,12 +34,12 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
   }
 
   const handleScore = (num) => {
-    let comment = { ...comments[commentId] }
+    let commentToAdd = { ...comments[commentId] }
     if (replyingTo) {
       dispatch(
         editReply({
-          ...comment,
-          replies: comment.replies.map((reply) => {
+          ...commentToAdd,
+          replies: commentToAdd.replies.map((reply) => {
             if (reply.id === id) {
               return { ...reply, score: reply.score + num }
             }
@@ -46,7 +50,34 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
       return
     }
 
-    dispatch(editComment({ ...comment, score: (comment.score += num) }))
+    dispatch(
+      editComment({ ...commentToAdd, score: (commentToAdd.score += num) })
+    )
+  }
+
+  const handleEdit = () => {
+    let commentToAdd = { ...comments[commentId] }
+    if (replyingTo) {
+      dispatch(
+        editReply({
+          ...commentToAdd,
+          replies: commentToAdd.replies.map((reply) => {
+            if (reply.id === id) {
+              return {
+                ...reply,
+                content: messageContent.split(`${replyingTo}, `)[1],
+              }
+            }
+            return reply
+          }),
+        })
+      )
+      setIsEdit(false)
+      return
+    }
+
+    dispatch(editCommentToAdd({ ...commentToAdd, content: message }))
+    setIsEdit(false)
   }
 
   return (
@@ -117,10 +148,15 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
               <>
                 <textarea
                   className="card__edit"
-                  value={`@${replyingTo}, ${content}`}
-                ></textarea>
-                {/*TODO handleUpdate function for edit comment or reply*/}
-                <button className="card__button">UPDATE</button>
+                  value={messageContent}
+                  onChange={(e) => setMessageContent(e.target.value)}
+                />
+                <button
+                  className="button button--update"
+                  onClick={() => handleEdit()}
+                >
+                  UPDATE
+                </button>
               </>
             ) : (
               <p className="card__content">
