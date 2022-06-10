@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
+import { AnimatePresence, motion } from "framer-motion"
 
 import {
   togglePopup,
@@ -72,18 +73,36 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
           }),
         })
       )
-      setIsEdit(false)
-      return
     }
 
-    dispatch(editCommentToAdd({ ...commentToAdd, content: message }))
-    setIsEdit(false)
+    if (!replyingTo)
+      dispatch(editComment({ ...commentToAdd, content: messageContent }))
   }
 
+  useEffect(() => {
+    setIsEdit(false)
+  }, [content])
+
+  useEffect(() => {
+    if (!isEdit) {
+      setMessageContent(replyingTo ? `@${replyingTo}, ${content}` : content)
+    }
+  }, [isEdit])
   return (
-    <div
+    <motion.div
       className={`card ${replyingTo ? "card--reply" : ""}`}
       style={isEdit ? { paddingBottom: "10rem" } : {}}
+      initial={{
+        opacity: 0,
+        y: 100,
+        scale: 0.8,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      }}
+      transition={{ duration: 0.5, bounce: 0.5, type: "spring" }}
     >
       <div className="card__comment">
         <div className="card__score-box">
@@ -143,33 +162,80 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
               )}
             </div>
           </div>
+
           <div className="card__main-bottom">
-            {isEdit ? (
-              <>
-                <textarea
-                  className="card__edit"
-                  value={messageContent}
-                  onChange={(e) => setMessageContent(e.target.value)}
-                />
-                <button
-                  className="button button--update"
-                  onClick={() => handleEdit()}
+            <AnimatePresence>
+              {isEdit ? (
+                <>
+                  <motion.textarea
+                    className="card__edit"
+                    value={messageContent}
+                    onChange={(e) => setMessageContent(e.target.value)}
+                    initial={{
+                      opacity: 0,
+                      y: -50,
+                      scale: 0.8,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: -50,
+                      scale: 0,
+                    }}
+                    transition={{ duration: 0.5, bounce: 0.5, type: "spring" }}
+                  />
+                  <motion.button
+                    className="button button--update"
+                    onClick={() => handleEdit()}
+                    initial={{
+                      opacity: 0,
+                      y: -50,
+                      scale: 0.8,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    whileTap={{
+                      scale: 0.9,
+                    }}
+                  >
+                    UPDATE
+                  </motion.button>
+                </>
+              ) : (
+                <motion.p
+                  className="card__content"
+                  initial={{
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                  }}
                 >
-                  UPDATE
-                </button>
-              </>
-            ) : (
-              <p className="card__content">
-                {replyingTo && (
-                  <span className="card__replying-to">@{replyingTo}</span>
-                )}
-                &nbsp;{content}
-              </p>
-            )}
+                  {replyingTo && (
+                    <span className="card__replying-to">@{replyingTo}</span>
+                  )}
+                  &nbsp;{content}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

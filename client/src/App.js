@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { motion, AnimatePresence } from "framer-motion"
 
 import { fetchCurrentUser } from "./features/auth/authService"
 import { fetchComments, createComment } from "./features/comment/commentService"
@@ -21,11 +22,11 @@ const App = () => {
   }, [])
 
   return (
-    <div className="App">
+    <motion.div className="App" animate={isOpenPopup ? "open" : "closed"}>
       <CommentList />
       <UserCard handleCreate={createComment} />
-      {isOpenPopup && <Popup />}
-    </div>
+      <AnimatePresence>{isOpenPopup && <Popup />}</AnimatePresence>
+    </motion.div>
   )
 }
 

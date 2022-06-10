@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { motion } from "framer-motion"
 
 import { selectUser } from "../auth/authSlice"
 import { selectComments } from "./commentSlice"
@@ -56,10 +57,14 @@ const UserCard = ({
   if (!Object.keys(user).length) return <div>No User!!</div>
 
   return (
-    <div
+    <motion.div
       className={`usercard ${
         replyingType === "reply" ? "usercard--replying" : ""
       }`}
+      initial={{ scale: 0.5 }}
+      animate={{ scale: 1 }}
+      exit={{ scale: 0 }}
+      transition={{ duration: 0.3, bounce: 0.3, type: "spring" }}
     >
       <form className="usercard__form" onSubmit={(e) => handleSubmit(e)}>
         <div className="usercard__avatar-box">
@@ -78,7 +83,7 @@ const UserCard = ({
         ></textarea>
         <button className="button">{replyingType ? "REPLY" : "SEND"}</button>
       </form>
-    </div>
+    </motion.div>
   )
 }
 

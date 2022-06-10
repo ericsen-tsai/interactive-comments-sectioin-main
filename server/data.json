@@ -49,23 +49,9 @@
           }
         },
         {
-          "id": 690555,
-          "content": "Hello There~~~",
-          "createdAt": "2022-06-10T08:16:39.416Z",
-          "score": 0,
-          "user": {
-            "image": {
-              "png": "./images/avatars/image-juliusomo.png",
-              "webp": "./images/avatars/image-juliusomo.webp"
-            },
-            "username": "juliusomo"
-          },
-          "replyingTo": "ramsesmiron"
-        },
-        {
-          "id": 473328,
-          "content": "Hello There~~~~",
-          "createdAt": "2022-06-10T09:43:26.586Z",
+          "id": 794086,
+          "content": "Here's something new!",
+          "createdAt": "2022-06-10T17:35:03.899Z",
           "score": 0,
           "user": {
             "image": {

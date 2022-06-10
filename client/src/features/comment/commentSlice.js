@@ -52,7 +52,6 @@ export const commentSlice = createSlice({
     builder
       .addCase(deleteComment.fulfilled, (state, action) => {
         state.isLoading = false
-        console.log(action)
         state.comments = _.omit(state.comments, action.payload.id)
       })
       .addCase(fetchComments.fulfilled, (state, action) => {
