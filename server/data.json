@@ -25,7 +25,7 @@
       "id": 2,
       "content": "Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!",
       "createdAt": "2022-05-28T16:00:00.000Z",
-      "score": 4,
+      "score": 5,
       "user": {
         "image": {
           "png": "./images/avatars/image-maxblagun.png",
@@ -47,20 +47,6 @@
             },
             "username": "ramsesmiron"
           }
-        },
-        {
-          "id": 794086,
-          "content": "Here's something new!",
-          "createdAt": "2022-06-10T17:35:03.899Z",
-          "score": 0,
-          "user": {
-            "image": {
-              "png": "./images/avatars/image-juliusomo.png",
-              "webp": "./images/avatars/image-juliusomo.webp"
-            },
-            "username": "juliusomo"
-          },
-          "replyingTo": "ramsesmiron"
         }
       ]
     }

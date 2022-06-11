@@ -64,24 +64,37 @@ const UserCard = ({
       initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
+      whileHover={{ scale: 1.01 }}
       transition={{ duration: 0.3, bounce: 0.3, type: "spring" }}
     >
       <form className="usercard__form" onSubmit={(e) => handleSubmit(e)}>
         <div className="usercard__avatar-box">
-          <img
+          <motion.img
             src={user.image.png}
             alt="user-avatar"
             className="usercard__avatar"
+            whileHover={{ scale: 1.1 }}
           />
         </div>
-        <textarea
+        <motion.textarea
           type="text"
           className="usercard__comment"
           value={messageContent}
           onChange={(e) => setMessageContent(e.target.value)}
           placeholder="Add a comment..."
-        ></textarea>
-        <button className="button">{replyingType ? "REPLY" : "SEND"}</button>
+          whileFocus={{ scale: 1.05 }}
+        ></motion.textarea>
+        <motion.button
+          className="button"
+          whileHover={{
+            scale: 1.2,
+          }}
+          whileTap={{
+            scale: 0.9,
+          }}
+        >
+          {replyingType ? "REPLY" : "SEND"}
+        </motion.button>
       </form>
     </motion.div>
   )

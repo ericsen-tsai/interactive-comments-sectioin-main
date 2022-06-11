@@ -119,8 +119,15 @@
   }
 
   &__replying-to {
+    display: inline-block;
     color: $clr-primary-1;
     font-weight: $font-weight-bold;
+    cursor: default;
+
+    &::selection {
+      background-color: $clr-neutral-1;
+      color: $clr-neutral-4;
+    }
   }
 
   &__content {

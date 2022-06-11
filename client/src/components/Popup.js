@@ -60,7 +60,7 @@ const Popup = () => {
         initial={{ x: -200, y: -50, scale: 0.5 }}
         animate={{ x: -200, y: -100, scale: 1 }}
         exit={{ opacity: 0, scale: 0.1 }}
-        transition={{ type: "spring" }}
+        transition={{ type: "spring", duration: 0.3, bounce: 0.5 }}
       >
         <h3 className="popup__title">Delete comment</h3>
         <p className="popup__description">

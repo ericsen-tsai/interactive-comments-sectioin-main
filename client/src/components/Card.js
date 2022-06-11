@@ -88,6 +88,7 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
       setMessageContent(replyingTo ? `@${replyingTo}, ${content}` : content)
     }
   }, [isEdit])
+
   return (
     <motion.div
       className={`card ${replyingTo ? "card--reply" : ""}`}
@@ -102,22 +103,36 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
         y: 0,
         scale: 1,
       }}
+      whileHover={{ scale: 1.01 }}
       transition={{ duration: 0.5, bounce: 0.5, type: "spring" }}
     >
       <div className="card__comment">
         <div className="card__score-box">
-          <i className="icon icon--plus" onClick={() => handleScore(1)}></i>
+          <motion.i
+            className="icon icon--plus"
+            onClick={() => handleScore(1)}
+            whileHover={{ scale: 1.8 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "tween", duration: 0.2 }}
+          ></motion.i>
           <p className="card__score">{score}</p>
-          <i className="icon icon--minus" onClick={() => handleScore(-1)}></i>
+          <motion.i
+            className="icon icon--minus"
+            onClick={() => handleScore(-1)}
+            whileHover={{ scale: 1.5 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "tween", duration: 0.2 }}
+          ></motion.i>
         </div>
         <div className="card__main">
           <div className="card__main-top">
             <div className="card__info">
               <div className="card__avatar-box">
-                <img
+                <motion.img
                   src={user.image.png}
                   alt={user.username}
                   className="card__avatar"
+                  whileHover={{ scale: 1.1 }}
                 />
               </div>
               <p className="card__username">{user.username}</p>
@@ -129,35 +144,44 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
             <div className="card__action-box">
               {isSelf ? (
                 <>
-                  <div
+                  <motion.div
                     className="card__action"
                     onClick={() => handleOnDelete()}
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: "tween" }}
                   >
                     <i className="icon icon--delete"></i>
                     <p className="card__action-text card__action-text--delete">
                       Delete
                     </p>
                     <div className="card__action-mask"></div>
-                  </div>
-                  <div
+                  </motion.div>
+                  <motion.div
                     className="card__action"
                     onClick={() => setIsEdit((isEdit) => !isEdit)}
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: "tween" }}
                   >
                     <i className="icon icon--edit"></i>
                     <p className="card__action-text">Edit</p>
                     <div className="card__action-mask"></div>
-                  </div>
+                  </motion.div>
                 </>
               ) : (
                 <>
-                  <div
+                  <motion.div
                     className="card__action"
                     onClick={() => setIsOpen((isOpen) => !isOpen)}
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: "tween" }}
                   >
                     <i className="icon icon--reply"></i>
                     <p className="card__action-text">Reply</p>
                     <div className="card__action-mask"></div>
-                  </div>
+                  </motion.div>
                 </>
               )}
             </div>
@@ -186,6 +210,7 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
                       y: -50,
                       scale: 0,
                     }}
+                    whileFocus={{ scale: 1.05 }}
                     transition={{ duration: 0.5, bounce: 0.5, type: "spring" }}
                   />
                   <motion.button
@@ -202,7 +227,7 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
                       scale: 1,
                     }}
                     whileHover={{
-                      scale: 1.1,
+                      scale: 1.2,
                     }}
                     whileTap={{
                       scale: 0.9,
@@ -226,7 +251,12 @@ const Card = ({ info, currentUserName, setIsOpen, commentId }) => {
                   }}
                 >
                   {replyingTo && (
-                    <span className="card__replying-to">@{replyingTo}</span>
+                    <motion.span
+                      className="card__replying-to"
+                      whileHover={{ y: -5 }}
+                    >
+                      @{replyingTo}
+                    </motion.span>
                   )}
                   &nbsp;{content}
                 </motion.p>
