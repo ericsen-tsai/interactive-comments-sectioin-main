@@ -1,0 +1,20 @@
+{
+  "name": "interactive-comments-section-main",
+  "version": "1.0.0",
+  "description": "interactive comments section",
+  "scripts": {
+    "install": "cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericsen-tsai/interactive-comments-sectioin-main.git"
+  },
+  "author": "Ericsen Tsai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericsen-tsai/interactive-comments-sectioin-main/issues"
+  },
+  "homepage": "https://github.com/ericsen-tsai/interactive-comments-sectioin-main#readme"
+}
