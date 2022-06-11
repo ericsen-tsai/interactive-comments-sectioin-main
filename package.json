@@ -4,7 +4,7 @@
   "description": "interactive comments section",
   "scripts": {
     "install": "cd client && npm install && cd ../server && npm install",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm install sass-loader && npm run build",
     "start": "cd server && npm start"
   },
   "repository": {
