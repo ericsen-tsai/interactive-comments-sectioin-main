@@ -6,7 +6,7 @@ const headers = {
 }
 
 export const fetchComment = createAsyncThunk(
-  "auth/fetchComment",
+  "comment/fetchComment",
   async (data) => {
     const response = await API.get(`comments/${data.id}`, headers)
     return response.data
@@ -14,7 +14,7 @@ export const fetchComment = createAsyncThunk(
 )
 
 export const fetchComments = createAsyncThunk(
-  "auth/fetchComments",
+  "comment/fetchComments",
   async () => {
     const response = await API.get("comments", headers)
     return response.data
@@ -22,7 +22,7 @@ export const fetchComments = createAsyncThunk(
 )
 
 export const createComment = createAsyncThunk(
-  "auth/createComment",
+  "comment/createComment",
   async (data) => {
     const response = await API.post("comments", data, { headers })
     return response.data
@@ -32,7 +32,7 @@ export const createComment = createAsyncThunk(
 //Creating a reply uses put is because can't call an api to
 //add reply directly. (so as editing and deleting)
 export const createReply = createAsyncThunk(
-  "auth/createReply",
+  "comment/createReply",
   async (data) => {
     const response = await API.put(`comments/${data.id}`, data, { headers })
     return response.data
@@ -40,20 +40,20 @@ export const createReply = createAsyncThunk(
 )
 
 export const editComment = createAsyncThunk(
-  "auth/editComment",
+  "comment/editComment",
   async (data) => {
     const response = await API.put(`comments/${data.id}`, data, { headers })
     return response.data
   }
 )
 
-export const editReply = createAsyncThunk("auth/editReply", async (data) => {
+export const editReply = createAsyncThunk("comment/editReply", async (data) => {
   const response = await API.put(`comments/${data.id}`, data, { headers })
   return response.data
 })
 
 export const deleteComment = createAsyncThunk(
-  "auth/deleteComment",
+  "comment/deleteComment",
   async (data) => {
     await API.delete(`comments/${data.id}`, headers)
     return { id: data.id }
@@ -61,7 +61,7 @@ export const deleteComment = createAsyncThunk(
 )
 
 export const deleteReply = createAsyncThunk(
-  "auth/deleteReply",
+  "comment/deleteReply",
   async (data) => {
     const response = await API.put(`comments/${data.id}`, data, { headers })
     return response.data
